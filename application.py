@@ -4,6 +4,6 @@ application = Flask(__name__)
 
 @application.route("/")
 def index():
-    return 'Hello world'
+    return 'Hello world', 200
 
 application.run()
