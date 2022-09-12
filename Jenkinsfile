@@ -10,9 +10,7 @@ pipeline {
             }
         }
         stage('Env Jenkins variables') {
-            agent {
-                any
-            }
+            agent any
             steps {
                 echo '${env.BUILD_ID}'
                 echo '${env.BUILD_NUMBER}'
@@ -27,9 +25,7 @@ pipeline {
             }
         }
         stage('Setting variables') {
-            agent {
-                any
-            }
+            agent any
             environment {
                 CC = 'DD'
             }
