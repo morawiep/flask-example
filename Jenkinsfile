@@ -2,19 +2,39 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Env GIT variables') {
+            agent any
             steps {
-                echo 'Building..'
+                echo '${env.BRANCH_NAME}'
+                echo '${env.CHANGE_ID}'
             }
         }
-        stage('Test') {
+        stage('Env Jenkins variables') {
+            agent {
+                label 'linux'
+            }
             steps {
-                echo 'Testing..'
+                echo '${env.BUILD_ID}'
+                echo '${env.BUILD_NUMBER}'
+                echo 'BUILD_TAG ${env.BUILD_TAG}'
+                echo '${env.BUILD_URL}'
+                echo 'EXECUTOR_NUMBER ${env.EXECUTOR_NUMBER}'
+                echo '${env.JAVA_HOME}'
+                echo '${env.JENKINS_URL}'
+                echo '${env.JOB_NAME}'
+                echo '${env.NODE_NAME}'
+                echo '${env.WORKSPACE}'
             }
         }
-        stage('Deploy') {
+        stage('Setting variables') {
+            agent {
+                label 'linux'
+            }
+            environment {
+                CC = 'DD'
+            }
             steps {
-                echo 'Deploying....'
+                echo 'printenv'
             }
         }
     }
