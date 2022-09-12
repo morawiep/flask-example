@@ -3,14 +3,12 @@ pipeline {
 
     stages {
         stage('Env GIT variables') {
-            agent any
             steps {
                 echo '${env.BRANCH_NAME}'
                 echo '${env.CHANGE_ID}'
             }
         }
         stage('Env Jenkins variables') {
-            agent any
             steps {
                 echo '${env.BUILD_ID}'
                 echo '${env.BUILD_NUMBER}'
@@ -25,7 +23,6 @@ pipeline {
             }
         }
         stage('Setting variables') {
-            agent any
             environment {
                 CC = 'DD'
             }
